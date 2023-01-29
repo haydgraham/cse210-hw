@@ -31,6 +31,12 @@ class Program
             else if(choice == "3") {
                 Console.Write("\nWhat is the filename?\n>");
                 string filename = Console.ReadLine();
+                List<string> lines = new List<string>();
+                lines = File.ReadAllLines("/Users/hayden/Desktop/programmingwclasses/cse210-hw/prove/Develop02/" + filename).ToList();
+                foreach(string line in lines){
+                    entries.Add(line);
+                }
+
             }
             else if(choice == "4") {
                 Console.Write("\nWhat is the filename?\n>");
