@@ -12,6 +12,7 @@ class Program
         
         //get user choice
         String choice = "";
+        //let the user exit the while loop with 5 input
         while(choice != "5") {
             Console.Write("\n\nPlease select one of the following choices:\n1. Write\n2. Display\n3. Load\n4. Save\n5. Quit\n\nWhat would you like to do?\n>");             //if the user selects 1 give them a prompt and store their entry in a list
             choice = Console.ReadLine();
@@ -23,14 +24,17 @@ class Program
                 entries.Add(entryPrompt + " " + entry);
             }
             else if(choice == "2") {
+                //get the current date and concatenate it to the entries
                 DateTime today = DateTime.Today;
                 foreach(String item in entries) {
                     Console.Write("\n\nDate: " + today + " - " + item);
                     }
             }
             else if(choice == "3") {
+                //prompt and get filename from user
                 Console.Write("\nWhat is the filename?\n>");
                 string filename = Console.ReadLine();
+                //create an empty list to read lines from the selected text file to
                 List<string> lines = new List<string>();
                 lines = File.ReadAllLines("/Users/hayden/Desktop/programmingwclasses/cse210-hw/prove/Develop02/" + filename).ToList();
                 foreach(string line in lines){
@@ -39,15 +43,19 @@ class Program
 
             }
             else if(choice == "4") {
+                //prompt and get filename from user
                 Console.Write("\nWhat is the filename?\n>");
                 string filename = Console.ReadLine();
-                
+                //create text writer so the user can create a file
                 TextWriter tw = new StreamWriter("/Users/hayden/Desktop/programmingwclasses/1cse210-hw/prove/Develop02/" + filename, true);
                 tw.Close();
 
-                    
+                //add the current instance of the entries list to the new file    
                 File.WriteAllLines(filename, entries);
                 }
+            else {
+                Console.Write("\nEnter a valid option: 1-5");
+            }
         }
     }
 
