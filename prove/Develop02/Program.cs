@@ -41,15 +41,11 @@ class Program
             else if(choice == "4") {
                 Console.Write("\nWhat is the filename?\n>");
                 string filename = Console.ReadLine();
-                try{
-                    TextWriter tw = new StreamWriter("/Users/hayden/Desktop/programmingwclasses/cse210-hw/prove/Develop02/" + filename, true);
-                    tw.WriteLine("this is a test line");
-                    tw.Close();
+                
+                TextWriter tw = new StreamWriter("/Users/hayden/Desktop/programmingwclasses/1cse210-hw/prove/Develop02/" + filename, true);
+                tw.Close();
 
-                    }catch(Exception e)
-                    {
-                        Console.Write(e);
-                    }
+                    
                 File.WriteAllLines(filename, entries);
                 }
         }
