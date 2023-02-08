@@ -10,11 +10,12 @@ class Program
         Scripture.DisplayScripture();
 
         //prompt the user to hit the enter key to hide words
-            Console.WriteLine("\nPress enter to continue or type 'quit' to finish: ");
+        Console.WriteLine("\nPress enter to continue or type 'quit' to finish: ");
 
         //main program loop for retrieving user input (Enter/Quit).
         string userInput = "";
         while(userInput != "quit") {
+            
             userInput = Console.ReadLine();
         }
         Console.WriteLine("loop closed");
