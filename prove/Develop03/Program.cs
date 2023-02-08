@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+
+
 class Program
 {
-    static void Main(string[] args)
-    {
-        Console.WriteLine("something");
+    static void Main(string[] args){
+        Scripture.Hello();
     }
+
 }
