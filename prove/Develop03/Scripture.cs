@@ -4,10 +4,12 @@ using System.Collections.Generic;
 
 class Scripture
 {
-    public static void Hello(){
-
-
-        Console.WriteLine("hello");
+    // class variables
+    private static string reference = "Proverbs 3:5-6";
+    private static string verse = "Trust in the Lord with all thine heart and lean not unto thine own understanding; in all thy ways acknowledge him, and he shall direct thy paths.";
+    // class methods
+    public static void DisplayScripture(){
+        Console.WriteLine(reference + " " + verse);
     }
 
 }
