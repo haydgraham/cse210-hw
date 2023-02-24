@@ -23,29 +23,31 @@ class Program
             //get the desired duration of the activity from user
             int seconds = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
-            Console.WriteLine("Get Ready...\n");
+            Console.Write("Get Ready...\n");
             List<string> spinner = new List<string>();
             spinner.Add("|");
             spinner.Add("/");
             spinner.Add("-");
             spinner.Add("\\");
 
-            BaseActivity.spinner(spinner, 5);
+            BaseActivity.animator(spinner, 2, 1);
 
             DateTime startTime = DateTime.Now;
             DateTime endTime = startTime.AddSeconds(seconds);
 
             while(DateTime.Now < endTime){
-                Console.WriteLine("Breathe in...");
-                Thread.Sleep(2000);
-                Console.WriteLine("Now breathe out...\n");
-                Thread.Sleep(2000);
+                Console.Write("Breathe in...");
+                Breathing.countDown(5);
+                Console.WriteLine("");
+                Console.Write("Now breathe out...");
+                Breathing.countDown(5);
+                Console.WriteLine("\n");
             }
 
             Console.WriteLine("Well done!!");
             Thread.Sleep(2000);
             Console.WriteLine("\nYou have completed another " + seconds + " seconds of the Breathing Activity.");
-            Thread.Sleep(2000);
+            Breathing.animator(spinner, 2, 1);
             Console.Clear();
             Console.WriteLine(BaseActivity.menu);
 
@@ -56,6 +58,19 @@ class Program
             Reflecting reflecting = new Reflecting();
             //use base class method to display the unique activity message
             reflecting.activityMessage(reflecting.activityName, reflecting.activityDescription);
+
+            int seconds = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            Console.Write("Get Ready...\n");
+             List<string> spinner = new List<string>();
+            spinner.Add("|");
+            spinner.Add("/");
+            spinner.Add("-");
+            spinner.Add("\\");
+
+            BaseActivity.animator(spinner, 2, 1);
+
+
         }
         else if(choice == "3"){
             Console.Clear();

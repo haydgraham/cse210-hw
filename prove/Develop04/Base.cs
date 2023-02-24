@@ -8,14 +8,14 @@ class BaseActivity {
     public static List<string> listToBeAnimated = new List<string>();
 
     //methods
-    public static void spinner(List<string> listToBeAnimated, int duration) {
+    public static void animator(List<string> listToBeAnimated, int duration, int sleepInterval) {
 
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(duration);
         int i = 0;
         while(DateTime.Now < endTime){
                 Console.Write(listToBeAnimated[i]);
-                Thread.Sleep(1000);
+                Thread.Sleep(100 * sleepInterval);
                 Console.Write("\b \b");
                 i++;
                 if(i >= listToBeAnimated.Count){
