@@ -70,6 +70,30 @@ class Program
 
             BaseActivity.animator(spinner, 2, 1);
 
+            Console.WriteLine("\nConsider the following prompt:\n");
+
+            List<string> prompts = new List<string>();
+            prompts.Add(" --- Think of a time when you did something really difficult. ---");
+            prompts.Add(" --- Think of a time when you followed a spiritual prompting. ---");
+            prompts.Add(" --- Think of a time when you accomplished something great. ---");
+            prompts.Add(" --- Think of a time when you went the extra mile to stick to a goal. ---");
+            prompts.Add(" --- Think of a time when you helped someone in need. ---");
+
+            Random random = new Random();
+            int randomIndex = random.Next(0, prompts.Count());
+
+
+
+            Console.WriteLine(prompts[randomIndex] + "\n");
+            Console.WriteLine("When you have something in mind, press enter to continue.");
+
+            string enter = Console.ReadLine();
+            if(enter == ""){
+                Console.Write("Now ponder on each of the following questions as they related to this experience.\nYou may begin in: ");
+                
+            }
+
+
 
         }
         else if(choice == "3"){
