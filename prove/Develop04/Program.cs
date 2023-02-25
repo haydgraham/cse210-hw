@@ -95,10 +95,10 @@ class Program
             }
 
             List<string> questions = new List<string>();
-            questions.Add("> How did you feel when it was complete");
-            questions.Add("> What is your favorite thing about this experience?");
-            questions.Add("> What did you learn from this experience?");
-            questions.Add("> What spiritual insights did you gain from this experience?");
+            questions.Add("> How did you feel when it was complete? ");
+            questions.Add("> What is your favorite thing about this experience? ");
+            questions.Add("> What did you learn from this experience? ");
+            questions.Add("> What spiritual insights did you gain from this experience? ");
 
             DateTime startTime = DateTime.Now;
             DateTime endTime = startTime.AddSeconds(seconds);
@@ -111,8 +111,10 @@ class Program
             }
 
             Console.WriteLine("\nWell done!!");
-            Reflecting.animator(spinner, 5, 1);
-
+            Reflecting.animator(spinner, 2, 1);
+            Console.WriteLine("You have completed another " + seconds + " seconds of the Reflecting Activity.");
+            Reflecting.animator(spinner, 2, 1);
+            Console.Clear();
             Console.WriteLine(BaseActivity.menu);
 
 
