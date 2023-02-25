@@ -24,6 +24,18 @@ class BaseActivity {
         }
 
     }
+
+    public static void countDown(int countDownStart){
+        List<string> countDownList = new List<string>();
+        for(int i = countDownStart; i > -1; i--){
+            countDownList.Add(i.ToString());
+        }
+
+        animator(countDownList, 5, 10);
+
+    }
+
+
     public void activityMessage(string activityName, string activityDescription){
         Console.Write("Welcome to the " + activityName + ".\n\n" + activityDescription + "\n\nHow long, in seconds, would you like for your session? ");
     }

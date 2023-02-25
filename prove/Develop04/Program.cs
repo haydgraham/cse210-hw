@@ -90,8 +90,30 @@ class Program
             string enter = Console.ReadLine();
             if(enter == ""){
                 Console.Write("Now ponder on each of the following questions as they related to this experience.\nYou may begin in: ");
-                
+                Reflecting.countDown(5);
+                Console.Clear();
             }
+
+            List<string> questions = new List<string>();
+            questions.Add("> How did you feel when it was complete");
+            questions.Add("> What is your favorite thing about this experience?");
+            questions.Add("> What did you learn from this experience?");
+            questions.Add("> What spiritual insights did you gain from this experience?");
+
+            DateTime startTime = DateTime.Now;
+            DateTime endTime = startTime.AddSeconds(seconds);
+
+            while(DateTime.Now < endTime) {
+            randomIndex = random.Next(0, questions.Count());
+            Console.Write(questions[randomIndex]);
+            Reflecting.animator(spinner, 5, 1);
+            Console.Write("\n");
+            }
+
+            Console.WriteLine("\nWell done!!");
+            Reflecting.animator(spinner, 5, 1);
+
+            Console.WriteLine(BaseActivity.menu);
 
 
 

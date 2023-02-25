@@ -6,14 +6,5 @@ class Breathing : BaseActivity {
 
 
     //methods
-    public static void countDown(int countDownStart){
-        List<string> countDownList = new List<string>();
-        for(int i = countDownStart; i > -1; i--){
-            countDownList.Add(i.ToString());
-        }
-
-        animator(countDownList, 5, 10);
-
-    }
 
 }
