@@ -1,23 +1,23 @@
 class Listing : Activity {
-    private string activityName = "Listing";
+    private string _activityName = "Listing";
 
-    private string listingActivityMessage = "Welcome to the Listing Activity.\n\nThis activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.\n\nHow long in seconds would you like for your session: ";
+    private string _listingActivityMessage = "Welcome to the Listing Activity.\n\nThis activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.\n\nHow long in seconds would you like for your session: ";
 
 
-    public string getActivityName(){
-        return activityName;
+    public string GetActivityName(){
+        return _activityName;
     }
-    public string getListingActivityMessage(){
-        return listingActivityMessage;
+    public string GetListingActivityMessage(){
+        return _listingActivityMessage;
     }
 
-    public void listingActivity(){
+    public void ListingActivity(){
         Console.Clear();
-        Console.Write(listingActivityMessage);
+        Console.Write(_listingActivityMessage);
 
         int seconds = Convert.ToInt32(Console.ReadLine());
 
-        getReadyAnimation(2, 1);
+        GetReadyAnimation(2, 1);
             
         Console.Write("List as many responses as you can to the following prompt:\n");
 
@@ -32,7 +32,7 @@ class Listing : Activity {
         Console.Write(prompts[randomIndex]);
 
         Console.Write("\nYou may begin in: ");
-        countDownAnimation(5);
+        CountDownAnimation(5);
         
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(seconds);
@@ -47,6 +47,6 @@ class Listing : Activity {
 
         Console.WriteLine("You listed " + entries.Count() + " items!");
 
-        returnToMenu(seconds, activityName);
+        ReturnToMenu(seconds, _activityName);
     }
 }
