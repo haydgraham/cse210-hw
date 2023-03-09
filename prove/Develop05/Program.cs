@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.IO;
-
 class Program
 {
     static void Main(string[] args)
@@ -93,7 +92,12 @@ class Program
 
             }
             else if(choice == "5"){
-                Console.WriteLine("Record event seleted");
+                Console.WriteLine("Which goal did you accomplish");
+                string markCompleted = Console.ReadLine();
+                int markCompletedInt = Convert.ToInt32(markCompleted);
+                Console.WriteLine("Congratulations! you have earned {} points!\nYou now have {} points.");
+                goalHolder[markCompletedInt] = "Completed";
+                Console.WriteLine(menu);
             }
         }
     }
