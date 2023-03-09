@@ -33,13 +33,27 @@ class Program
 
                 }
                 else if(goalType == "2"){
-                    Console.WriteLine("eternal goal selected");
+                    //todo: prompt for eternal goal object
+                    Console.WriteLine("What is the name of your goal? ");
+                    string name = Console.ReadLine();
+                    Console.WriteLine("What is a short description of it? ");
+                    string description = Console.ReadLine();
+                    Console.WriteLine("What is the amount of points associated with this goal? ");
+                    int points = Console.Read();
                     Console.Clear();
                     Console.WriteLine(menu);
 
                 }
                 else if(goalType == "3"){
-                    Console.WriteLine("Checklist goal selected");
+                    //todo: prompt for checklist goal object
+                    Console.WriteLine("What is the name of your goal? ");
+                    string name = Console.ReadLine();
+                    Console.WriteLine("What is a short descripiton of it? ");
+                    string description = Console.ReadLine();
+                    Console.WriteLine("What is the amount of points associated with this goal? ");
+                    int points = Console.Read();
+                    Console.WriteLine("How many times does this goal need to be accomplished for a bonus? ");
+                    int bonus = Console.Read();
                     Console.Clear();
                     Console.WriteLine(menu);
                 }
