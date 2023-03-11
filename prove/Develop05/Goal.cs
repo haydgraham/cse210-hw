@@ -1,71 +1,105 @@
 class Goal {
-    protected string name;
-    protected string description;
-    protected int points;
-    protected Boolean completed;
+    protected string _name;
+    protected string _description;
+    protected int _points;
+    protected Boolean _completed;
 
     //no args constructor
     public Goal(){
-        name = "";
-        description = "";
-        points = 0;
-        completed = false;
+        _name = "";
+        _description = "";
+        _points = 0;
+        _completed = false;
     }
 
     //parameterized constructor
     public Goal(string name, string description, int points, Boolean completed){
-        this.name = name;
-        this.description= description;
-        this.points = points;
-        this.completed = completed;
+        this._name = name;
+        this._description= description;
+        this._points = points;
+        this._completed = completed;
     }
 
     //getters
-    public string getName(){
-        return name;
+    public string GetName(){
+        return _name;
     }
 
-    public string getDescrption(){
-        return description;
+    public string GetDescrption(){
+        return _description;
     }
 
-    public int getPoints(){
-        return points;
-    }
-
-    public Boolean isCompleted(){
-        return completed;
+    public int GetPoints(){
+        return _points;
     }
 
     //setters
-    public void setName(string name){
-        this.name = name;
+    public void GetName(string name){
+        this._name = name;
     }
 
-    public void setDescription(string description){
-        this.description = description;
+    public void SetDescription(string description){
+        this._description = description;
     }
 
-    public void setPoints(int points){
-        this.points = points;
+    public void SetPoints(int points){
+        this._points = points;
     }
 
-    public void setCompleted(Boolean completed){
-        this.completed = completed;
+    public void SetCompleted(Boolean completed){
+        this._completed = completed;
     }
 
-    //methods
-    public string toString(){
+
+    //takes the goal attributes and converts them to a csv formatted string to be added to a text file
+    public virtual string ToCsvFormat(){
+        string goalAsCsv = $"Goal:{_completed},{_name},{_description},{_points}";
+        return goalAsCsv;
+    }
+
+    public virtual string ToGoalFormat(){
+        string goal = $"{IsCompleted(_completed)} {_name} ({_description}) {_points}";
+        return goal;
+    }
+
+    //reads the csv string into the desired program format
+    public static string CsvToGoalFormat(string csvString){
+        string[] parts = csvString.Split(",");
+        string goalFormatString = "";
+        foreach(string part in parts){
+            goalFormatString+=part + " ";
+        }
+        return goalFormatString;
+
+    }
+
+
+
+      public static string MarkComplete(string goal){
+        string[] parts = goal.Split(" ");
+        if(parts[0] != "[Eternal]"){
+            parts[0] = "[X]";
+        }
+        string goalFormatString = "";
+        foreach(string part in parts){
+            goalFormatString+=part + " ";
+        }
+        return goalFormatString;
+
+    }
+
+    //returns an x if the completed class member == true
+    public static string IsCompleted(Boolean completed){
         string completionMark = "";
         if(completed == true){
             completionMark = "[X]";
         }
         else{
-            completionMark = "[ ]";
+            completionMark = "[]";
         }
-        string objectString = completionMark + " " + name + " (" + description + ") ";
-        return objectString;
+        return completionMark;
     }
+
 
 
 

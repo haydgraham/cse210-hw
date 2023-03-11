@@ -6,8 +6,7 @@ class Program
     static void Main(string[] args)
     {
         ArrayList goalHolder = new ArrayList();
-
-        Console.WriteLine("\nYou have 0 points.\n");
+        ArrayList goalHolderCsv = new ArrayList();
 
         string menu = "Menu options:\n 1. Create New Goal\n 2. List Goals\n 3. Save Goals\n 4. Load Goals\n 5. Record Event\n 6. Quit\nSelect a choice from the menu:";
         Console.WriteLine(menu);
@@ -24,36 +23,47 @@ class Program
                     Console.WriteLine("What is a short description of it?");
                     string description = Console.ReadLine();
                     Console.WriteLine("What is the amount of points associated with this goal?");
-                    int points = Console.Read();
-                    Goal goal = new Goal(name, description, points, false);
-                    goalHolder.Add(goal.toString());
+                    int points = int.Parse(Console.ReadLine());
+                    Simple simple = new Simple(false, name, description, points);
+                    goalHolder.Add(simple.ToGoalFormat());
+                    goalHolderCsv.Add(simple.ToCsvFormat());
+
                     Console.Clear();
                     Console.WriteLine(menu);
 
 
                 }
                 else if(goalType == "2"){
-                    //todo: prompt for eternal goal object
                     Console.WriteLine("What is the name of your goal? ");
                     string name = Console.ReadLine();
                     Console.WriteLine("What is a short description of it? ");
                     string description = Console.ReadLine();
                     Console.WriteLine("What is the amount of points associated with this goal? ");
-                    int points = Console.Read();
+                    int points = int.Parse(Console.ReadLine());
+                    Eternal eternal = new Eternal(name, description, points);
+                    goalHolder.Add(eternal.ToGoalFormat());
+                    goalHolderCsv.Add(eternal.ToCsvFormat());
+
                     Console.Clear();
                     Console.WriteLine(menu);
+                    
 
                 }
                 else if(goalType == "3"){
-                    //todo: prompt for checklist goal object
                     Console.WriteLine("What is the name of your goal? ");
                     string name = Console.ReadLine();
                     Console.WriteLine("What is a short descripiton of it? ");
                     string description = Console.ReadLine();
                     Console.WriteLine("What is the amount of points associated with this goal? ");
-                    int points = Console.Read();
+                    int points = int.Parse(Console.ReadLine());
                     Console.WriteLine("How many times does this goal need to be accomplished for a bonus? ");
-                    int bonus = Console.Read();
+                    int times = int.Parse(Console.ReadLine());
+                    Console.WriteLine("What is the bonus for accomplishing it that many times?");
+                    int bonus = int.Parse(Console.ReadLine());
+                    Checklist checklist = new Checklist(false, name, description, points, times, bonus);
+                    goalHolder.Add(checklist.ToGoalFormat());
+                    goalHolderCsv.Add(checklist.ToCsvFormat());
+
                     Console.Clear();
                     Console.WriteLine(menu);
                 }
@@ -73,8 +83,9 @@ class Program
             else if(choice == "3"){
                Console.WriteLine("What is the filename of the goal file? ");
                string filename = Console.ReadLine();
-               foreach(string goal in goalHolder){
                using (StreamWriter outputFile = new StreamWriter(filename))
+
+               foreach(string goal in goalHolderCsv){
                outputFile.WriteLine(goal);
                }
                Console.Clear();
@@ -87,14 +98,38 @@ class Program
 
                 foreach (string line in lines)
                 {
-                    string[] parts = line.Split(" ");
+                    string[] parts = line.Split(",");
 
-                    string completed = parts[0];
-                    string name = parts[1];
-                    string description = parts[2];
+                    string goalType = parts[0];
+                    if(goalType == "Simple"){
+                        Boolean completed = bool.Parse(parts[1]);
+                        string name = parts[2];
+                        string description = parts[3];
+                        int points = int.Parse(parts[4]);
 
-                    string goal = $"{completed} {name} {description}";
-                    goalHolder.Add(goal);
+                        Simple simple = new Simple(completed, name, description, points);
+                        goalHolder.Add(simple.ToGoalFormat());
+                    }
+                    else if(goalType == "Eternal"){
+                        Boolean completed = bool.Parse(parts[1]);
+                        string name = parts[2];
+                        string description = parts[3];
+                        int points = int.Parse(parts[4]);
+
+                        Eternal eternal = new Eternal(name, description, points);
+                        goalHolder.Add(eternal.ToGoalFormat());
+                    }
+                    else if(goalType == "Checklist"){
+                        Boolean completed = bool.Parse(parts[1]);
+                        string name = parts[2];
+                        string description = parts[3];
+                        int points = int.Parse(parts[4]);
+                        int times = int.Parse(parts[5]);
+                        int bonus = int.Parse(parts[6]);
+
+                        Checklist checklist = new Checklist(completed, name, description, points, times, bonus);
+                        goalHolder.Add(checklist.ToGoalFormat());
+                    }
                 }
                 Console.WriteLine("The goals are:");
                 int i = 1;
@@ -106,11 +141,15 @@ class Program
 
             }
             else if(choice == "5"){
+                //todo: each part of the string separated by " " and then put that into another string
+                //that starts with "[X]"
                 Console.WriteLine("Which goal did you accomplish");
-                string markCompleted = Console.ReadLine();
-                int markCompletedInt = Convert.ToInt32(markCompleted);
-                Console.WriteLine("Congratulations! you have earned {} points!\nYou now have {} points.");
-                goalHolder[markCompletedInt] = "Completed";
+                int goalIndex = int.Parse(Console.ReadLine()) - 1;
+                object selectedGoal = goalHolder[goalIndex];
+                string selectedGoalAsString = selectedGoal.ToString();
+                goalHolder[goalIndex] = Goal.MarkComplete(selectedGoalAsString);
+
+
                 Console.WriteLine(menu);
             }
         }
